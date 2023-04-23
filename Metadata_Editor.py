@@ -1,6 +1,7 @@
 import sys
+import os
+import taglib
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QFileDialog, QTextEdit
-from mutagen import File
 
 
 class AudioEditor(QWidget):
@@ -61,12 +62,13 @@ class AudioEditor(QWidget):
             self.load_file(file_path)
 
     def load_file(self, file_path):
-        self.audio_file = File(file_path, easy=True)
+        self.audio_file = taglib.File(file_path)
 
-        self.artist_input.setText(self.audio_file.get('artist', [''])[0])
-        self.title_input.setText(self.audio_file.get('title', [''])[0])
-        self.album_input.setText(self.audio_file.get('album', [''])[0])
-        self.genre_input.setText(self.audio_file.get('genre', [''])[0])
+        if self.audio_file is not None:
+            self.artist_input.setText(self.audio_file.tags.get('ARTIST', [''])[0])
+            self.title_input.setText(self.audio_file.tags.get('TITLE', [''])[0])
+            self.album_input.setText(self.audio_file.tags.get('ALBUM', [''])[0])
+            self.genre_input.setText(self.audio_file.tags.get('GENRE', [''])[0])
 
         self.display_current_metadata()
 
@@ -80,10 +82,10 @@ class AudioEditor(QWidget):
         self.current_metadata.setPlainText(current_metadata)
 
     def save_changes(self):
-        self.audio_file['artist'] = self.artist_input.text()
-        self.audio_file['title'] = self.title_input.text()
-        self.audio_file['album'] = self.album_input.text()
-        self.audio_file['genre'] = self.genre_input.text()
+        self.audio_file.tags['ARTIST'] = [self.artist_input.text()]
+        self.audio_file.tags['TITLE'] = [self.title_input.text()]
+        self.audio_file.tags['ALBUM'] = [self.album_input.text()]
+        self.audio_file.tags['GENRE'] = [self.genre_input.text()]
 
         self.audio_file.save()
 
