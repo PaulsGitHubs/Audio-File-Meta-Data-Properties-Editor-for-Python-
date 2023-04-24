@@ -1,5 +1,5 @@
 # Audio-File-Meta-Data-Properties-Editor-Python-
-This is an audio file metadata property editor written in python.
+This is an audio file metadata property editor written in python that works for *.mp3 *.flac *.m4a *.ogg *.opus *.wav files.
 
 LATEST NOTE: It works for mp3, wav, have to test on others as well.
 
