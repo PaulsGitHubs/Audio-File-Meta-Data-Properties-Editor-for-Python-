@@ -7,3 +7,7 @@ LATEST NOTE: It works for mp3, wav, have to test on others as well.
 
 Dependancies: PyQt5, taglib
 All dependancies will be listed in a dependencies install folder for easy installation.... later.
+
+# For C++ Version
+Please also see https://github.com/PaulsGitHubs/Audio-File-Meta-Data-Properties-Editor-C-/blob/main/README.md
+
