@@ -2,7 +2,7 @@ import sys
 import os
 import taglib
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QFileDialog, QTextEdit
-
+#runs well
 
 class AudioEditor(QWidget):
     def __init__(self):
